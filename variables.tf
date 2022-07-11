@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "aws_account_id" {
   description = "12 digit aws account id used to construct Amazon Resource Names (ARNs)."
-  default     = "914232957830"
+  default     = ""
 }
 
 variable "aws_elasticsearch_domain" {
@@ -27,17 +27,6 @@ variable "elasticsearch_version" {
   description = "Elastic Search Service cluster version number."
   default     = "7.10"
 }
-
-# variable "vpc_id" {
-#   description = "Vpc id where the Elastic Search Service cluster will be launched."
-#   default = "${aws_vpc.elk-vpc.id}"
-# }
-
-# variable "subnet_ids" {
-#   type = list
-#   description = "List of VPC Subnet IDs for the Elastic Search Service EndPoints will be created."
-#   default = ["${aws_subnet.elk-subnet["elk Subnet 1"].id}","${aws_subnet.elk-subnet["elk Subnet 1"].id}"]
-# }
 
 variable "ingress_allow_cidr_blocks" {
   default     = []
@@ -61,16 +50,5 @@ variable "delete_after" {
   description = "how many days to keep logs."
   default     = "30"
 }
-
-# variable "s3_bucket_alb_logs_arn" {
-#   description = "Amazon Resource Names (ARNs) of the S3 bucket containing ALB logs."
-#     default = "${aws_s3_bucket.alb_logs_arn.arn}"
-
-# }
-
-# variable "s3_bucket_alb_logs_id" {
-#   description = "id of the S3 bucket containing ALB logs."
-#   default = "${aws_s3_bucket.alb_logs_arn.id}"
-# }
 
 
