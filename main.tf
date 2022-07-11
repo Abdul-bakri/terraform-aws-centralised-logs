@@ -4,7 +4,7 @@ resource "aws_iam_service_linked_role" "es" {
 
 # create elasticsearch cluster to hold logs data
 module "logs_data_es_cluster" {
-  source                    = "github.com/neillturner/terraform-aws-es-cluster"
+  source                    = "github.com/Pr3c10us/terraform-aws-es-cluster"
 #  source                    = "egarbi/es-cluster/aws"
 #  version                   = "0.0.7"
   name                      = "${var.aws_elasticsearch_domain}"
