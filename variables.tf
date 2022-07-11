@@ -24,35 +24,36 @@ variable "zone_id" {
 
 variable "elasticsearch_version" {
   description = "Elastic Search Service cluster version number."
-  default     = "6.7"
+  default     = "7.10"
 }
 
 variable "vpc_id" {
   description = "Vpc id where the Elastic Search Service cluster will be launched."
+  default = "${aws_vpc.elk-vpc.id}"
 }
 
 variable "subnet_ids" {
   type = list
   description = "List of VPC Subnet IDs for the Elastic Search Service EndPoints will be created."
-  default = []
+  default = ["${aws_subnet.elk-subnet["elk Subnet 1"].id}","${aws_subnet.elk-subnet["elk Subnet 1"].id}"]
 }
 
 variable "ingress_allow_cidr_blocks" {
   default     = []
   description = "Specifies the ingress CIDR blocks allowed to access the elasticsearch cluster."
-  type        = "list"
+  type        = list
 }
 
 variable "ingress_allow_security_groups" {
   default     = []
   description = "Specifies the ingress security groups allowed to access the elasticsearch cluster."
-  type        = "list"
+  type        = list
 }
 
 variable "cidr_access_es" {
   default     = []
   description = "Specifies the CIDR blocks allowed to access the elasticsearch cluster."
-  type        = "list"
+  type        = list
 }
 
 variable "delete_after" {
@@ -62,10 +63,13 @@ variable "delete_after" {
 
 variable "s3_bucket_alb_logs_arn" {
   description = "Amazon Resource Names (ARNs) of the S3 bucket containing ALB logs."
+    default = "${aws_s3_bucket.alb_logs_arn.arn}"
+
 }
 
 variable "s3_bucket_alb_logs_id" {
   description = "id of the S3 bucket containing ALB logs."
+  default = "${aws_s3_bucket.alb_logs_arn.id}"
 }
 
 
