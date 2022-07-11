@@ -99,5 +99,5 @@ module "alb-logs-to-elasticsearch" {
   s3_bucket_arn = aws_s3_bucket.alb_logs_arn.arn
   s3_bucket_id  = aws_s3_bucket.alb_logs_arn.id
   subnet_ids    = ["${aws_subnet.elk-subnet["elk Subnet 1"].id}","${aws_subnet.elk-subnet["elk Subnet 1"].id}"]
-  region        = "us-east-1"
+  region        = "${var.aws_region}"
 }
