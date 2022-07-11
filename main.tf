@@ -84,7 +84,7 @@ EOT
 # lambda to cleanup at 1am each morning delete old logs data
 module "lambda-es-cleanup" {
   source       = "github.com/Pr3c10us/terraform-aws-lambda-es-cleanup"
-  version      = "0.2.0"
+#   version      = "0.2.0"
   delete_after = "${var.delete_after}"
   es_endpoint  = "${module.logs_data_es_cluster.es_endpoint}"
   schedule     = "cron(0 1 * * ? *)"
@@ -94,7 +94,7 @@ module "lambda-es-cleanup" {
 # lambda to load alb logs from S3 to elasticsearch cluster
 module "alb-logs-to-elasticsearch" {
   source        = "github.com/neillturner/terraform-aws-alb-logs-to-elasticsearch"
-  version       = "0.1.0"
+#   version       = "0.1.0"
   es_endpoint   = "${module.logs_data_es_cluster.es_endpoint}"
   s3_bucket_arn = aws_s3_bucket.alb_logs_arn.arn
   s3_bucket_id  = aws_s3_bucket.alb_logs_arn.id
