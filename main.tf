@@ -88,7 +88,7 @@ module "lambda-es-cleanup" {
   delete_after = "${var.delete_after}"
   es_endpoint  = "${module.logs_data_es_cluster.es_endpoint}"
   schedule     = "cron(0 1 * * ? *)"
-  subnet_ids   = var.subnet_ids
+  subnet_ids   = ["${aws_subnet.elk-subnet["elk Subnet 1"].id}","${aws_subnet.elk-subnet["elk Subnet 1"].id}"]
 }
 
 # lambda to load alb logs from S3 to elasticsearch cluster
