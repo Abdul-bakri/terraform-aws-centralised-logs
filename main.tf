@@ -4,7 +4,7 @@ resource "aws_iam_service_linked_role" "es" {
 
 # create elasticsearch cluster to hold logs data
 module "logs_data_es_cluster" {
-  source                    = "github.com/Pr3c10us/terraform-aws-es-cluster"
+  source                    = "github.com/Abdul-bakri/terraform-aws-es-cluster"
 #  source                    = "egarbi/es-cluster/aws"
 #  version                   = "0.0.7"
   name                      = "${var.aws_elasticsearch_domain}"
@@ -83,7 +83,7 @@ EOT
 
 # lambda to cleanup at 1am each morning delete old logs data
 module "lambda-es-cleanup" {
-  source       = "github.com/Pr3c10us/terraform-aws-lambda-es-cleanup"
+  source       = "github.com/Abdul-bakri/terraform-aws-lambda-es-cleanup"
 #   version      = "0.2.0"
   delete_after = "${var.delete_after}"
   es_endpoint  = "${module.logs_data_es_cluster.es_endpoint}"
@@ -93,7 +93,7 @@ module "lambda-es-cleanup" {
 
 # lambda to load alb logs from S3 to elasticsearch cluster
 module "alb-logs-to-elasticsearch" {
-  source        = "github.com/Pr3c10us/terraform-aws-alb-logs-to-elasticsearch"
+  source        = "github.com/Abdul-bakri/terraform-aws-alb-logs-to-elasticsearch"
 #   version       = "0.1.0"
   es_endpoint   = "${module.logs_data_es_cluster.es_endpoint}"
   s3_bucket_arn = aws_s3_bucket.alb_logs_arn.arn
