@@ -5,6 +5,7 @@ variable "aws_region" {
 
 variable "aws_account_id" {
   description = "12 digit aws account id used to construct Amazon Resource Names (ARNs)."
+  default     = "914232957830"
 }
 
 variable "aws_elasticsearch_domain" {
