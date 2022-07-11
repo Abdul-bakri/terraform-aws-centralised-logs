@@ -9,8 +9,8 @@ module "logs_data_es_cluster" {
 #  version                   = "0.0.7"
   name                      = "${var.aws_elasticsearch_domain}"
   elasticsearch_version     = "${var.elasticsearch_version}"
-  vpc_id                    = "${var.vpc_id}"
-  subnet_ids                = var.subnet_ids
+  vpc_id                    = aws_vpc.elk-vpc.id
+  subnet_ids                = ["${aws_subnet.elk-subnet["elk Subnet 1"].id}","${aws_subnet.elk-subnet["elk Subnet 1"].id}"]
   volume_size               = "${var.volume_size}"
   zone_id                   = "${var.zone_id}"
   itype                     = "m4.large.elasticsearch"
@@ -96,7 +96,7 @@ module "alb-logs-to-elasticsearch" {
   source        = "neillturner/alb-logs-to-elasticsearch/aws"
   version       = "0.1.0"
   es_endpoint   = "${module.logs_data_es_cluster.es_endpoint}"
-  s3_bucket_arn = "${var.s3_bucket_alb_logs_arn}"
-  s3_bucket_id  = "${var.s3_bucket_alb_logs_id}"
+  s3_bucket_arn = aws_s3_bucket.alb_logs_arn.arn
+  s3_bucket_id  = aws_s3_bucket.alb_logs_arn.id
   subnet_ids    = var.subnet_ids
 }
