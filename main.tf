@@ -93,7 +93,7 @@ module "lambda-es-cleanup" {
 
 # lambda to load alb logs from S3 to elasticsearch cluster
 module "alb-logs-to-elasticsearch" {
-  source        = "github.com/neillturner/terraform-aws-alb-logs-to-elasticsearch"
+  source        = "github.com/Pr3c10us/terraform-aws-alb-logs-to-elasticsearch"
 #   version       = "0.1.0"
   es_endpoint   = "${module.logs_data_es_cluster.es_endpoint}"
   s3_bucket_arn = aws_s3_bucket.alb_logs_arn.arn
